@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { getNews, setNews, generateId, type NewsItem } from '../utils/storage';
-import { Plus, Pencil, Trash2, Save, X, ImageIcon } from 'lucide-react';
+import { runFullDefenseScan } from '../utils/defense';
+import { Plus, Pencil, Trash2, Save, X, ImageIcon, ShieldCheck, Loader2 } from 'lucide-react';
 
 export const NewsEditor = () => {
   const [items, setItems] = useState<NewsItem[]>([]);
   const [editing, setEditing] = useState<NewsItem | null>(null);
   const [isNew, setIsNew] = useState(false);
 
+  const [isScanning, setIsScanning] = useState(false);
+
   useEffect(() => { setItems(getNews()); }, []);
 
-  const save = () => {
+  const save = async () => {
     if (!editing) return;
+    
+    setIsScanning(true);
+    const result = await runFullDefenseScan(editing, 'news');
+    setIsScanning(false);
+
+    if (!result.safe) {
+      alert(`🛡️ AMD ALERT: ${result.reason}`);
+      return;
+    }
+
     let updated: NewsItem[];
     if (isNew) {
       updated = [editing, ...items];
@@ -101,9 +114,20 @@ export const NewsEditor = () => {
                 {editing.image && <img src={editing.image} alt="preview" className="h-16 w-16 rounded-lg object-cover" />}
               </div>
             </div>
-            <button onClick={save} className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800">
-              <Save size={18} /> Save
+            <button 
+              onClick={save} 
+              disabled={isScanning}
+              className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+            >
+              {isScanning ? (
+                <><Loader2 size={18} className="animate-spin" /> Analyzing...</>
+              ) : (
+                <><Save size={18} /> Save</>
+              )}
             </button>
+            <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-2">
+              <ShieldCheck size={12} className="text-green-500" /> Content Protected by Anti-Malicious Defense
+            </div>
           </div>
         </div>
       )}

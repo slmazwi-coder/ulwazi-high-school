@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getHallOfFame, setHallOfFame, generateId, type HallOfFameEntry } from '../utils/storage';
-import { Plus, Trash2, Save, Trophy, X, ImageIcon, Pencil } from 'lucide-react';
+import { runFullDefenseScan } from '../utils/defense';
+import { Plus, Trash2, Save, Trophy, X, ImageIcon, Pencil, ShieldCheck, Loader2 } from 'lucide-react';
 
 export const AchievementsEditor = () => {
   const [hall, setHall] = useState<HallOfFameEntry[]>(getHallOfFame());
@@ -8,8 +9,20 @@ export const AchievementsEditor = () => {
   const [isNew, setIsNew] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const saveHall = () => {
+  const [isScanning, setIsScanning] = useState(false);
+
+  const saveHall = async () => {
     if (!editing) return;
+
+    setIsScanning(true);
+    const result = await runFullDefenseScan(editing, 'achievements');
+    setIsScanning(false);
+
+    if (!result.safe) {
+      alert(`🛡️ AMD ALERT: ${result.reason}`);
+      return;
+    }
+
     let updated: HallOfFameEntry[];
     if (isNew) {
       updated = [...hall, editing];
@@ -76,7 +89,22 @@ export const AchievementsEditor = () => {
               </label>
               {editing.image && <img src={editing.image} className="h-10 w-10 rounded object-cover" />}
             </div>
-            <button onClick={saveHall} className="flex items-center gap-2 bg-school-green text-white px-4 py-2 rounded-lg text-sm"><Save size={14} /> Save</button>
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-gray-600">
+              <button 
+                onClick={saveHall} 
+                disabled={isScanning}
+                className="flex items-center gap-2 bg-school-green text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-800 disabled:opacity-50"
+              >
+                {isScanning ? (
+                  <><Loader2 size={14} className="animate-spin" /> Analyzing...</>
+                ) : (
+                  <><Save size={14} /> Save</>
+                )}
+              </button>
+              <div className="flex items-center gap-1 text-[9px] text-gray-500 font-bold uppercase tracking-wider">
+                <ShieldCheck size={10} className="text-green-500" /> Anti-Malicious Defense Active
+              </div>
+            </div>
           </div>
         )}
 

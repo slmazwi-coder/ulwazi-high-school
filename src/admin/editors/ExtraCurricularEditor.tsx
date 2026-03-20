@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { getActivities, setActivities, generateId, type Activity } from '../utils/storage';
-import { Plus, Trash2, Save, X, ImageIcon, Pencil } from 'lucide-react';
+import { runFullDefenseScan } from '../utils/defense';
+import { Plus, Trash2, Save, X, ImageIcon, Pencil, ShieldCheck, Loader2 } from 'lucide-react';
 
 const categories = ['Sports', 'Arts & Culture', 'Academic Clubs', 'Community Service', 'Other'];
 
@@ -9,8 +9,20 @@ export const ExtraCurricularEditor = () => {
   const [editing, setEditing] = useState<Activity | null>(null);
   const [isNew, setIsNew] = useState(false);
 
-  const save = () => {
+  const [isScanning, setIsScanning] = useState(false);
+
+  const save = async () => {
     if (!editing) return;
+
+    setIsScanning(true);
+    const result = await runFullDefenseScan(editing, 'extracurricular');
+    setIsScanning(false);
+
+    if (!result.safe) {
+      alert(`🛡️ AMD ALERT: ${result.reason}`);
+      return;
+    }
+
     let updated: Activity[];
     if (isNew) {
       updated = [...items, editing];
@@ -74,7 +86,22 @@ export const ExtraCurricularEditor = () => {
               </label>
               {editing.image && <img src={editing.image} className="h-12 w-12 rounded-lg object-cover" />}
             </div>
-            <button onClick={save} className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800"><Save size={18} /> Save</button>
+            <div className="pt-4 border-t border-gray-700 flex flex-wrap items-center justify-between gap-4">
+              <button 
+                onClick={save} 
+                disabled={isScanning}
+                className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+              >
+                {isScanning ? (
+                  <><Loader2 size={18} className="animate-spin" /> Scanning...</>
+                ) : (
+                  <><Save size={18} /> Save</>
+                )}
+              </button>
+              <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                <ShieldCheck size={12} className="text-green-500" /> AMD Protected
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
 import { getAbout, setAbout, type AboutInfo } from '../utils/storage';
-import { Save, Plus, Trash2 } from 'lucide-react';
+import { runFullDefenseScan } from '../utils/defense';
+import { Save, Plus, Trash2, ShieldCheck, Loader2 } from 'lucide-react';
 
 export const AboutEditor = () => {
   const [info, setInfo] = useState<AboutInfo>(getAbout());
   const [saved, setSaved] = useState(false);
 
-  const save = () => {
+  const [isScanning, setIsScanning] = useState(false);
+
+  const save = async () => {
+    setIsScanning(true);
+    const result = await runFullDefenseScan(info, 'about');
+    setIsScanning(false);
+
+    if (!result.safe) {
+      alert(`🛡️ AMD ALERT: ${result.reason}`);
+      return;
+    }
+
     setAbout(info);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -36,9 +47,22 @@ export const AboutEditor = () => {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">About Page Editor</h1>
-        <button onClick={save} className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800">
-          <Save size={18} /> {saved ? 'Saved ✓' : 'Save Changes'}
-        </button>
+        <div className="flex flex-col items-end gap-2">
+          <button 
+            onClick={save} 
+            disabled={isScanning}
+            className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+          >
+            {isScanning ? (
+              <><Loader2 size={18} className="animate-spin" /> Scanning...</>
+            ) : (
+              <><Save size={18} /> {saved ? 'Saved ✓' : 'Save Changes'}</>
+            )}
+          </button>
+          <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+            <ShieldCheck size={12} className="text-green-500" /> AMD Policy Protection Active
+          </div>
+        </div>
       </div>
 
       {/* History */}

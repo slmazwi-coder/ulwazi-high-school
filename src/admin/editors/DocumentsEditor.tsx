@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { getDocuments, setDocuments, generateId, type DocumentItem } from '../utils/storage';
-import { Plus, Trash2, Download, FileText, X, Upload } from 'lucide-react';
+import { runFullDefenseScan } from '../utils/defense';
+import { Plus, Trash2, Download, FileText, X, Upload, ShieldCheck, Loader2 } from 'lucide-react';
 
 const grades = ['Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
 const subjects = ['Mathematics', 'English', 'IsiXhosa', 'Physical Sciences', 'Life Sciences', 'Accounting', 'Business Studies', 'Economics', 'Geography', 'History', 'Agriculture', 'Other'];
@@ -11,6 +11,8 @@ export const DocumentsEditor = () => {
   const [filterSubject, setFilterSubject] = useState('');
   const [showUpload, setShowUpload] = useState(false);
   const [newDoc, setNewDoc] = useState({ grade: grades[0], subject: subjects[0], fileName: '', fileData: '' });
+
+  const [isScanning, setIsScanning] = useState(false);
 
   const filtered = items.filter(i =>
     (!filterGrade || i.grade === filterGrade) &&
@@ -27,8 +29,19 @@ export const DocumentsEditor = () => {
     reader.readAsDataURL(file);
   };
 
-  const addDocument = () => {
+  const addDocument = async () => {
     if (!newDoc.fileData || !newDoc.fileName) return;
+
+    setIsScanning(true);
+    // Scan both name and content (name is used for context check)
+    const result = await runFullDefenseScan({ ...newDoc, name: newDoc.fileName }, 'documents');
+    setIsScanning(false);
+
+    if (!result.safe) {
+      alert(`🛡️ AMD ALERT: ${result.reason}`);
+      return;
+    }
+
     const doc: DocumentItem = {
       id: generateId(),
       name: newDoc.fileName.replace(/\.[^/.]+$/, ''),
@@ -95,9 +108,22 @@ export const DocumentsEditor = () => {
               </label>
             </div>
           </div>
-          <button onClick={addDocument} disabled={!newDoc.fileData} className="bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50">
-            Upload
-          </button>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={addDocument} 
+              disabled={!newDoc.fileData || isScanning} 
+              className="bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+            >
+              {isScanning ? (
+                <><Loader2 size={18} className="animate-spin" /> Scanning...</>
+              ) : (
+                'Upload'
+              )}
+            </button>
+            <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+              <ShieldCheck size={12} className="text-green-500" /> Active Document Shield
+            </div>
+          </div>
         </div>
       )}
 
