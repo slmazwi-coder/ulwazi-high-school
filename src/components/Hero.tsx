@@ -4,16 +4,40 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1920",
+    url: "/Hero/Hero 1.jpg",
     caption: "Excellence in Education Since 1990"
   },
   {
-    url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1920",
+    url: "/Hero/Achievers 5.jpg",
+    caption: "Celebrating Our Triumphs"
+  },
+  {
+    url: "/Hero/Chris Hani District Top Achievers.jpg",
+    caption: "District Top Achievers"
+  },
+  {
+    url: "/Hero/Matric prayer.jpg",
+    caption: "A Tradition of Success"
+  },
+  {
+    url: "/Hero/Spelling bee achievers.jpg",
     caption: "Nurturing Future Leaders"
   },
   {
-    url: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&q=80&w=1920",
-    caption: "A Tradition of Success"
+    url: "/Hero/Top achievrs 2.jpg",
+    caption: "Dedicated to Excellence"
+  },
+  {
+    url: "/Hero/achievers 3.jpg",
+    caption: "Empowering Students"
+  },
+  {
+    url: "/Hero/achievers 4.jpg",
+    caption: "Building Brighter Futures"
+  },
+  {
+    url: "/Hero/prayer 2.jpg",
+    caption: "Guided by Faith and Knowledge"
   },
 ];
 
