@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Trophy, Star, TrendingUp, BarChart3, Medal, Calendar } from 'lucide-react';
+import { Trophy, Star, TrendingUp, BarChart3, Medal, Calendar, User, Award } from 'lucide-react';
 
 const resultsData = {
   "2025": {
@@ -65,29 +65,15 @@ const resultsData = {
       { subject: "Mathematics", rate: 65.0 },
       { subject: "Physical Sciences", rate: 75.5 },
     ]
-  },
-  "2019": {
-    overall: 95.4,
-    bachelor: 185,
-    bachelorRate: 75.0,
-    distinctions: 380,
-    wrote: 245,
-    subjects: [
-      { subject: "English FAL", rate: 100 },
-      { subject: "Mathematics", rate: 82.5 },
-      { subject: "Physical Sciences", rate: 88.0 },
-      { subject: "IsiXhosa HL", rate: 100 },
-      { subject: "History", rate: 99.0 },
-    ]
   }
 } as const;
 
 const bestEverStudents = [
-  { name: "Sipho Ndlovu", title: "National Top Achiever", year: "2018", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400", desc: "Achieved 100% in Mathematics and Physical Sciences" },
-  { name: "Jane Smith", title: "Provincial Number 1", year: "2021", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400", desc: "7 Distinctions, top student in Eastern Cape" },
-  { name: "Lwazi Mokoena", title: "Top Achiever in Commerce", year: "2019", image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&q=80&w=400", desc: "98% in Accounting and Economics" },
-  { name: "Thandiwe Sisulu", title: "Overall Distinction", year: "2022", image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400", desc: "8 Distinctions with 95% average" },
-  { name: "Michael Chang", title: "Provincial Top 5", year: "2016", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400", desc: "Exceptional performance in Sciences" },
+  { name: "Sipho Ndlovu", title: "National Top Achiever", year: "2018", image: "", desc: "Achieved 100% in Mathematics and Physical Sciences" },
+  { name: "Jane Smith", title: "Provincial Number 1", year: "2021", image: "", desc: "7 Distinctions, top student in Eastern Cape" },
+  { name: "Lwazi Mokoena", title: "Top Achiever in Commerce", year: "2019", image: "", desc: "98% in Accounting and Economics" },
+  { name: "Thandiwe Sisulu", title: "Overall Distinction", year: "2022", image: "", desc: "8 Distinctions with 95% average" },
+  { name: "Michael Chang", title: "Provincial Top 5", year: "2016", image: "", desc: "Exceptional performance in Sciences" },
 ];
 
 const topAchieversByYear: Record<string, {name: string, achievement: string, image: string}[]> = {
@@ -106,15 +92,43 @@ const topAchieversByYear: Record<string, {name: string, achievement: string, ima
   ],
 };
 
+// Initialize other years with empty image arrays
 for (let year = 2015; year <= 2022; year++) {
-  topAchieversByYear[year.toString()] = [
-    { name: `Outstanding Student 1`, achievement: "Multiple Distinctions", image: `https://i.pravatar.cc/400?img=${year % 70}` },
-    { name: `Outstanding Student 2`, achievement: "Top Performer", image: `https://i.pravatar.cc/400?img=${(year % 70) + 1}` },
-  ];
+  if (!topAchieversByYear[year]) {
+    topAchieversByYear[year.toString()] = [
+      { name: "Outstanding Student", achievement: "Top Performer", image: "" },
+    ];
+  }
 }
 
+const StudentAvatar = ({ image, name, title, year }: { image: string, name: string, title?: string, year: string }) => {
+  const [hasError, setHasError] = useState(!image);
+
+  return (
+    <div className="aspect-[3/4] sm:aspect-square w-full relative overflow-hidden bg-gray-100 rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center group">
+      {!hasError ? (
+        <img 
+          src={image} 
+          alt={name} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <div className="flex flex-col items-center justify-center text-gray-400 p-6 text-center">
+          <User size={64} className="mb-4 opacity-30" />
+          <p className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-1">{name}</p>
+          <p className="text-xs text-gray-400 italic">Class of {year}</p>
+        </div>
+      )}
+      <div className="absolute top-0 right-0 bg-school-green/10 p-4 text-school-green opacity-0 group-hover:opacity-100 transition-opacity">
+        <Award size={24} />
+      </div>
+    </div>
+  );
+};
+
 export const Achievements = () => {
-  const [activeResultsYear, setActiveResultsYear] = useState<"2025"|"2024"|"2023"|"2019">("2025");
+  const [activeResultsYear, setActiveResultsYear] = useState<"2025"|"2024"|"2023">("2025");
   const [activeAchieversYear, setActiveAchieversYear] = useState<string>("2025");
 
   const yearsList = Object.keys(topAchieversByYear).sort((a,b) => parseInt(b) - parseInt(a));
@@ -124,6 +138,32 @@ export const Achievements = () => {
     <div className="py-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="section-title text-center mb-16">Academic Excellence</h1>
+
+        {/* --- HISTORIC MILESTONE SECTION --- */}
+        <section className="mb-24">
+          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+              <Star size={200} className="text-yellow-600" />
+            </div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+              <div className="w-40 h-40 bg-yellow-400 rounded-full flex flex-col items-center justify-center text-yellow-900 border-8 border-white shadow-lg shrink-0">
+                <span className="text-4xl font-black">95.4%</span>
+                <span className="text-sm font-bold uppercase tracking-tighter italic">Pass Rate</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 text-yellow-700 font-bold uppercase tracking-widest text-sm mb-2">
+                  <Star size={16} fill="currentColor" /> Highest Historic Achievement <Star size={16} fill="currentColor" />
+                </div>
+                <h2 className="text-3xl md:text-5xl font-black text-school-green mb-4">
+                  2019: A Year of Unparalleled Excellence
+                </h2>
+                <p className="text-lg text-gray-700 max-w-2xl italic leading-relaxed">
+                  "In 2019, Nyanga High School reached a historic peak, recording a monumental 95.4% pass rate. This achievement remains a testament to the dedication of our students and the excellence of our academic tradition."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* --- HALL OF FAME: 5 BEST EVER --- */}
         <section className="mb-32">
@@ -142,21 +182,20 @@ export const Achievements = () => {
               <motion.div 
                 key={idx}
                 whileHover={{ y: -10 }}
-                className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-sm w-full md:w-[300px] border border-gray-100"
+                className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-sm w-full md:w-[280px] border border-gray-100"
               >
-                <div className="h-64 overflow-hidden relative group">
-                  <div className="absolute inset-0 bg-school-green/20 group-hover:bg-transparent transition-colors z-10" />
-                  <img src={student.image} alt={student.name} className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 right-0 bg-yellow-400 text-yellow-900 font-bold px-4 py-1 rounded-tl-xl z-20">
-                    Class of {student.year}
-                  </div>
-                </div>
+                <StudentAvatar 
+                  image={student.image} 
+                  name={student.name} 
+                  year={student.year} 
+                  title={student.title}
+                />
                 <div className="p-6 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">{student.name}</h3>
-                  <div className="text-school-green font-bold mb-3 flex items-center justify-center gap-1">
-                    <Medal size={18} /> {student.title}
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{student.name}</h3>
+                  <div className="text-school-green text-sm font-bold mb-3 flex items-center justify-center gap-1">
+                    <Medal size={16} /> {student.title}
                   </div>
-                  <p className="text-gray-600 text-sm">{student.desc}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{student.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -168,16 +207,16 @@ export const Achievements = () => {
         <section className="mb-32">
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
             <h2 className="text-3xl font-bold text-school-green flex items-center gap-3">
-              <BarChart3 className="text-school-green" /> Matric Results Overview
+              <BarChart3 className="text-school-green" /> Matric Results Summary
             </h2>
-            <div className="flex gap-2 mt-4 md:mt-0 bg-gray-100 p-1 rounded-xl flex-wrap justify-center">
-              {(["2025", "2024", "2023", "2019"] as const).map(year => (
+            <div className="flex gap-2 mt-4 md:mt-0 bg-gray-100 p-1 rounded-xl">
+              {(["2025", "2024", "2023"] as const).map(year => (
                 <button
                   key={year}
                   onClick={() => setActiveResultsYear(year)}
                   className={`px-6 py-2 rounded-lg font-bold transition-all ${activeResultsYear === year ? 'bg-school-green text-white shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
                 >
-                  {year === "2019" ? "2019 (Historic)" : year}
+                  {year}
                 </button>
               ))}
             </div>
@@ -197,24 +236,24 @@ export const Achievements = () => {
                 </div>
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                    <Star className="text-yellow-400" /> {activeResultsYear} Performance Summary
+                    <Star className="text-yellow-400" /> {activeResultsYear} Performance Overview
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                       <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.overall}%</p>
-                      <p className="text-green-100 font-medium">Overall Pass Rate</p>
+                      <p className="text-green-100 text-sm font-medium">Overall Pass Rate</p>
                     </div>
-                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                       <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.bachelor}</p>
-                      <p className="text-green-100 font-medium">Bachelor Passes ({currentResults.bachelorRate}%)</p>
+                      <p className="text-green-100 text-sm font-medium">Bachelor Passes ({currentResults.bachelorRate}%)</p>
                     </div>
-                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                       <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.distinctions}</p>
-                      <p className="text-green-100 font-medium">Total Distinctions</p>
+                      <p className="text-green-100 text-sm font-medium">Total Distinctions</p>
                     </div>
-                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                       <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.wrote}</p>
-                      <p className="text-green-100 font-medium">Learners Wrote</p>
+                      <p className="text-green-100 text-sm font-medium">Learners Wrote</p>
                     </div>
                   </div>
                 </div>
@@ -246,13 +285,13 @@ export const Achievements = () => {
         </section>
 
 
-        {/* --- TOP ACHIEVERS PER YEAR TABS --- */}
+        {/* --- TOP ACHIEVERS PER YEAR —-- */}
         <section>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-school-green flex items-center justify-center gap-3 mb-4">
               <Calendar className="text-school-green" /> Top Achievers Timeline
             </h2>
-            <p className="text-gray-600">Select a year to view our outstanding achievers from 2015 to 2025.</p>
+            <p className="text-gray-600 italic">Select a year to see the class achievers.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-12">
@@ -260,10 +299,10 @@ export const Achievements = () => {
               <button
                 key={year}
                 onClick={() => setActiveAchieversYear(year)}
-                className={`px-5 py-2 rounded-full font-bold transition-all ${
+                className={`px-5 py-2 rounded-full font-bold transition-all text-sm ${
                   activeAchieversYear === year 
                     ? 'bg-school-green text-white shadow-lg scale-105' 
-                    : 'bg-white text-gray-600 border border-gray-200 hover:border-school-green hover:text-school-green'
+                    : 'bg-white text-gray-500 border border-gray-200 hover:border-school-green hover:text-school-green'
                 }`}
               >
                 {year}
@@ -281,25 +320,22 @@ export const Achievements = () => {
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
             >
               {topAchieversByYear[activeAchieversYear]?.map((person, i) => (
-                <div key={i} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden text-center group">
-                  <div className="aspect-square w-full relative overflow-hidden bg-gray-100">
-                    <img 
-                      src={person.image} 
-                      alt={person.name} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">{person.name}</h3>
-                    <p className="text-sm font-semibold text-school-green mb-3">{person.achievement}</p>
-                    <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Class of {activeAchieversYear}</span>
+                <div key={i} className="text-center">
+                  <StudentAvatar 
+                    image={person.image} 
+                    name={person.name} 
+                    year={activeAchieversYear} 
+                  />
+                  <div className="mt-4">
+                    <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
+                    <p className="text-xs font-semibold text-school-green uppercase tracking-wider">{person.achievement}</p>
                   </div>
                 </div>
               ))}
               
               {(!topAchieversByYear[activeAchieversYear] || topAchieversByYear[activeAchieversYear].length === 0) && (
                 <div className="col-span-full py-12 text-center text-gray-400">
-                  <p>Images for {activeAchieversYear} will be added soon.</p>
+                  <p>Archival records for {activeAchieversYear} are currently being updated.</p>
                 </div>
               )}
             </motion.div>
