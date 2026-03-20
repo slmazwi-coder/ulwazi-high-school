@@ -34,7 +34,7 @@ export const About = () => {
             className="rounded-2xl overflow-hidden shadow-2xl"
           >
             <img 
-              src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80&w=1000" 
+              src="/About/Hero 1.jpg" 
               alt="School Campus" 
               className="w-full h-full object-cover"
             />
@@ -50,13 +50,13 @@ export const About = () => {
             <div className="col-span-1">
               <div className="aspect-square rounded-2xl overflow-hidden border-4 border-white shadow-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=500" 
+                  src="/About/Principal 1.JPG" 
                   alt="Principal" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="mt-4 text-center">
-                <h3 className="text-xl font-bold text-school-green">Dr. Sarah Johnson</h3>
+                <h3 className="text-xl font-bold text-school-green">Mr S. Butshingi</h3>
                 <p className="text-gray-500">School Principal</p>
               </div>
             </div>
