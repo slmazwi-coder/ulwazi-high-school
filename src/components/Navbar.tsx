@@ -23,9 +23,7 @@ export const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3">
-              <div className="h-12 w-12 bg-school-green rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">
-                N
-              </div>
+              <img src="/Logo/Badge.jpg" alt="Nyanga High School Badge" className="h-12 w-12 rounded-xl object-cover shadow-lg" />
               <div className="hidden md:block">
                 <span className="text-xl font-bold text-school-green block leading-none">NYANGA</span>
                 <span className="text-sm font-semibold text-gray-500">HIGH SCHOOL</span>
