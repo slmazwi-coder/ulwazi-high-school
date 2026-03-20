@@ -114,7 +114,30 @@ export function generateId(): string {
 }
 
 // News
-export const getNews = () => getItems<NewsItem>('admin_news');
+const defaultNews: NewsItem[] = [
+  {
+    id: '1',
+    title: "2026 Admissions Open",
+    date: "March 15, 2026",
+    content: "Applications for the 2026 academic year are now officially open. Please visit the Admissions portal.",
+    image: ""
+  },
+  {
+    id: '2',
+    title: "Term 1 Reports",
+    date: "March 20, 2026",
+    content: "Term 1 progress reports will be issued this Friday. Parents are encouraged to attend the briefing.",
+    image: ""
+  },
+  {
+    id: '3',
+    title: "Regional Athletics Results",
+    date: "March 10, 2026",
+    content: "Our athletics team secured 1st place in the regional championships! Congratulations to all athletes.",
+    image: ""
+  }
+];
+export const getNews = () => getItems<NewsItem>('admin_news').length ? getItems<NewsItem>('admin_news') : defaultNews;
 export const setNews = (items: NewsItem[]) => setItems('admin_news', items);
 
 // Documents
@@ -147,15 +170,24 @@ const defaultAbout: AboutInfo = {
   principalName: 'Mr S. Butshingi',
   principalTitle: 'School Principal',
   principalMessage: [
-    '"Welcome to Nyanga High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners."',
-    '"We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly hitch their wagons to the stars."',
+    'Welcome to Nyanga High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners. Our vision is not just about academic results, but about producing holistic citizens who are ready to change the world.',
+    'We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly hitch their wagons to the stars. Our consistent track record in the Matric results is a testament to the hard work of our dedicated staff and the resilience of our students.',
   ],
 };
 export const getAbout = () => getObject<AboutInfo>('admin_about', defaultAbout);
 export const setAbout = (info: AboutInfo) => setObject('admin_about', info);
 
 // Activities
-export const getActivities = () => getItems<Activity>('admin_activities');
+const defaultActivities: Activity[] = [
+  { id: '1', name: 'Soccer', category: 'Sport', description: 'The beautiful game — our teams compete passionately at district and regional tournaments.', image: '' },
+  { id: '2', name: 'Rugby', category: 'Sport', description: 'Our flagship sport with a rich history of regional dominance and provincial representation.', image: '' },
+  { id: '3', name: 'Netball', category: 'Sport', description: 'Competitive teams across all age groups with provincial accolades.', image: '' },
+  { id: '4', name: 'Athletics', category: 'Sport', description: 'Track and field excellence — developing speed, strength, and endurance across all events.', image: '' },
+  { id: '5', name: 'Spelling Bee', category: 'Academic', description: 'Sharpening language skills and vocabulary. National-level finalists multiple years running.', image: '' },
+  { id: '6', name: 'Debating', category: 'Academic', description: 'Developing critical thinkers and eloquent future leaders through competitive debate.', image: '' },
+  { id: '7', name: 'Choral Music', category: 'Culture', description: 'Award-winning choir known for excellence in regional and provincial competitions.', image: '' }
+];
+export const getActivities = () => getItems<Activity>('admin_activities').length ? getItems<Activity>('admin_activities') : defaultActivities;
 export const setActivities = (items: Activity[]) => setItems('admin_activities', items);
 
 // Achievers by year
@@ -163,11 +195,23 @@ export const getAchieversByYear = (year: string) => getItems<AchieverEntry>(`adm
 export const setAchieversByYear = (year: string, items: AchieverEntry[]) => setItems(`admin_achievers_${year}`, items);
 
 // Hall of Fame
-export const getHallOfFame = () => getItems<HallOfFameEntry>('admin_hall_of_fame');
+const defaultHall: HallOfFameEntry[] = [
+  { id: '1', name: 'Top Achiever 1', title: '7 Distinctions', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/Achievers%205.jpg' },
+  { id: '2', name: 'Top Achiever 2', title: '6 Distinctions', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/achievers%203.jpg' },
+  { id: '3', name: 'Top Achiever 3', title: 'Top in Math', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/achievers%204.jpg' },
+  { id: '4', name: 'Top Achiever 2024', title: 'Overall Best', year: '2024', desc: '', image: '/Achievements/HALL%20OF%20FAME/2024/1.jpg' },
+  { id: '5', name: 'Top Achiever 2023', title: '7 Distinctions', year: '2023', desc: '', image: '/Achievements/HALL%20OF%20FAME/2023/1.jpg' }
+];
+export const getHallOfFame = () => getItems<HallOfFameEntry>('admin_hall_of_fame').length ? getItems<HallOfFameEntry>('admin_hall_of_fame') : defaultHall;
 export const setHallOfFame = (items: HallOfFameEntry[]) => setItems('admin_hall_of_fame', items);
 
 // Results by year
-export const getResultsByYear = (year: string) => getObject<YearResults | null>(`admin_results_${year}`, null);
+const defaultResults: Record<string, YearResults> = {
+  "2025": { overall: 89.9, bachelor: 206, bachelorRate: 71.8, distinctions: 451, wrote: 287, subjects: [{ subject: "Accounting", rate: 90.6 }, { subject: "Mathematics", rate: 71.1 }, { subject: "Physical Sciences", rate: 82.1 }] },
+  "2024": { overall: 85.4, bachelor: 195, bachelorRate: 68.2, distinctions: 398, wrote: 286, subjects: [{ subject: "Accounting", rate: 88.5 }, { subject: "IsiXhosa HL", rate: 99.1 }] },
+  "2023": { overall: 82.1, bachelor: 178, bachelorRate: 64.5, distinctions: 345, wrote: 276, subjects: [{ subject: "Life Orientation", rate: 100 }, { subject: "Geography", rate: 93.5 }] }
+};
+export const getResultsByYear = (year: string) => getObject<YearResults | null>(`admin_results_${year}`, defaultResults[year] || null);
 export const setResultsByYear = (year: string, data: YearResults) => setObject(`admin_results_${year}`, data);
 
 // Auth

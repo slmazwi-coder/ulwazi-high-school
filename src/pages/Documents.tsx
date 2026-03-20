@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { FileText, Download, Search, Folder } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { getDocuments, type DocumentItem } from '../admin/utils/storage';
 
 const grades = ['Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
-
-const documents = [
-  { id: 1, title: "Term 1 Timetable", grade: "Grade 12", size: "1.2 MB", type: "PDF" },
-  { id: 2, title: "Mathematics Study Guide", grade: "Grade 12", size: "4.5 MB", type: "PDF" },
-  { id: 3, title: "Physical Sciences Schedule", grade: "Grade 11", size: "0.8 MB", type: "PDF" },
-  { id: 4, title: "English FAL Workbook", grade: "Grade 10", size: "2.1 MB", type: "PDF" },
-  { id: 5, title: "Grade 8 Orientation Pack", grade: "Grade 8", size: "3.2 MB", type: "PDF" },
-  { id: 6, title: "History Revision Notes", grade: "Grade 12", size: "1.5 MB", type: "PDF" },
-  { id: 7, title: "Accounting Practice Paper", grade: "Grade 12", size: "2.0 MB", type: "PDF" },
-  { id: 8, title: "Life Sciences Lab Manual", grade: "Grade 10", size: "1.8 MB", type: "PDF" },
-];
 
 export const Documents = () => {
   const [selectedGrade, setSelectedGrade] = useState('Grade 12');
   const [searchQuery, setSearchQuery] = useState('');
+  const [allDocs, setAllDocs] = useState<DocumentItem[]>(getDocuments());
 
-  const filteredDocs = documents.filter(doc => 
+  useEffect(() => {
+    setAllDocs(getDocuments());
+  }, []);
+
+  const handleDownload = (doc: DocumentItem) => {
+    try {
+      const link = document.createElement('a');
+      link.href = doc.fileData;
+      link.download = doc.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (e) {
+      console.error("Download failed", e);
+      alert("Failed to download file. It might be corrupt or missing.");
+    }
+  };
+
+  const filteredDocs = allDocs.filter(doc => 
     doc.grade === selectedGrade && 
     doc.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -77,8 +86,11 @@ export const Documents = () => {
                   </div>
                   <div className="flex-grow">
                     <h3 className="font-bold text-gray-800 mb-1">{doc.title}</h3>
-                    <p className="text-sm text-gray-500 mb-4">{doc.type} • {doc.size}</p>
-                    <button className="flex items-center gap-2 text-school-green font-bold hover:underline">
+                    <p className="text-sm text-gray-500 mb-4">Resource • {doc.grade}</p>
+                    <button 
+                      onClick={() => handleDownload(doc)}
+                      className="flex items-center gap-2 text-school-green font-bold hover:underline"
+                    >
                       <Download size={16} /> Download
                     </button>
                   </div>

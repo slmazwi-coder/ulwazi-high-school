@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Trophy, Music, Users, Star, Dumbbell, Target, BookOpen, Mic } from 'lucide-react';
+import { getActivities, type Activity } from '../admin/utils/storage';
 
 const sportsPrograms = [
   { 
@@ -62,9 +63,8 @@ const accolades = [
   { title: "Provincial Debate Semi-Finalists", year: "2023", category: "Academic" },
 ];
 
-const ProgramCard = ({ prog, index }: { prog: typeof sportsPrograms[0], index: number }) => (
+const ProgramCard: React.FC<{ prog: any }> = ({ prog }) => (
   <motion.div 
-    key={index}
     whileHover={{ y: -8 }}
     className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
   >
@@ -89,6 +89,25 @@ const ProgramCard = ({ prog, index }: { prog: typeof sportsPrograms[0], index: n
 );
 
 export const ExtraCurricular = () => {
+  const [activities, setActivities] = useState<Activity[]>(getActivities());
+
+  useEffect(() => {
+    setActivities(getActivities());
+  }, []);
+
+  const sportsPrograms = activities.filter(a => a.category === 'Sport');
+  const academicPrograms = activities.filter(a => a.category === 'Academic');
+  const culturePrograms = activities.filter(a => a.category === 'Culture');
+
+  const accolades = [
+    { title: "Regional Rugby Champions", year: "2024", category: "Sport" },
+    { title: "Provincial Choir Competition - 1st Place", year: "2023", category: "Culture" },
+    { title: "National Spelling Bee Finalist", year: "2025", category: "Academic" },
+    { title: "District Netball Gold Medalists", year: "2024", category: "Sport" },
+    { title: "District Athletics Meet - Overall Winners", year: "2024", category: "Sport" },
+    { title: "Provincial Debate Semi-Finalists", year: "2023", category: "Academic" },
+  ];
+
   return (
     <div className="py-16 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +123,7 @@ export const ExtraCurricular = () => {
             <Dumbbell className="text-school-green" /> Sports
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sportsPrograms.map((prog, i) => <ProgramCard key={i} prog={prog} index={i} />)}
+            {sportsPrograms.map((prog, i) => <ProgramCard key={i} prog={prog} />)}
           </div>
         </section>
 
@@ -114,7 +133,7 @@ export const ExtraCurricular = () => {
             <BookOpen className="text-school-green" /> Academic Extra-Curricular
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {academicPrograms.map((prog, i) => <ProgramCard key={i} prog={prog} index={i} />)}
+            {academicPrograms.map((prog, i) => <ProgramCard key={i} prog={prog} />)}
           </div>
         </section>
 
@@ -124,7 +143,7 @@ export const ExtraCurricular = () => {
             <Music className="text-school-green" /> Arts & Culture
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {culturePrograms.map((prog, i) => <ProgramCard key={i} prog={prog} index={i} />)}
+            {culturePrograms.map((prog, i) => <ProgramCard key={i} prog={prog} />)}
           </div>
         </section>
 

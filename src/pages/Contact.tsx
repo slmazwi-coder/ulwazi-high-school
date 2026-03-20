@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { getContact, type ContactInfo } from '../admin/utils/storage';
 
 export const Contact = () => {
+  const [info, setInfo] = useState<ContactInfo>(getContact());
+
+  useEffect(() => {
+    setInfo(getContact());
+  }, []);
   return (
     <div className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +27,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg">Our Address</h4>
-                  <p className="text-gray-600">Kalinyanga Admin Area, Engcobo, South Africa, 5050</p>
+                  <p className="text-gray-600">{info.address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -30,7 +36,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg">Phone Number</h4>
-                  <p className="text-gray-600">047 050 2369</p>
+                  <p className="text-gray-600">{info.phone}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -39,7 +45,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg">Email Address</h4>
-                  <p className="text-gray-600">nyangahighschool@gmail.com</p>
+                  <p className="text-gray-600">{info.email}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -48,8 +54,8 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg">Office Hours</h4>
-                  <p className="text-gray-600">Monday - Thursday: 07:30 - 15:30</p>
-                  <p className="text-gray-600">Friday: 07:30 - 13:30</p>
+                  <p className="text-gray-600">Monday - Thursday: {info.monThu}</p>
+                  <p className="text-gray-600">Friday: {info.friday}</p>
                 </div>
               </div>
             </div>

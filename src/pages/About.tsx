@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { User, Quote } from 'lucide-react';
+import { getAbout, type AboutInfo } from '../admin/utils/storage';
 
 export const About = () => {
+  const [data, setData] = useState<AboutInfo>(getAbout());
+
+  useEffect(() => {
+    setData(getAbout());
+  }, []);
   return (
     <div className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,15 +22,9 @@ export const About = () => {
           >
             <h2 className="text-2xl font-bold text-school-green mb-6">Our History & Formation</h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
-              <p>
-                Founded on the principles of excellence and community service, Nyanga High School has grown from a local initiative into a regional powerhouse of academic achievement. Located in the heart of Engcobo, our school has consistently served as a beacon of hope for thousands of learners.
-              </p>
-              <p>
-                Our journey began with a simple mission: to provide world-class education to the youth of the Eastern Cape. Over the decades, we have expanded our facilities, refined our curriculum, and built a legacy that is reflected in our motto: "Hitch Your Wagon To The Stars."
-              </p>
-              <p>
-                Today, Nyanga High School is recognized as a leader in Grade 12 results, consistently producing top-tier candidates who go on to excel in universities across South Africa and beyond.
-              </p>
+              {data.historyParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </motion.div>
           <motion.div
@@ -56,19 +56,16 @@ export const About = () => {
                 />
               </div>
               <div className="mt-4 text-center">
-                <h3 className="text-xl font-bold text-school-green">Mr S. Butshingi</h3>
-                <p className="text-gray-500">School Principal</p>
+                <h3 className="text-xl font-bold text-school-green">{data.principalName}</h3>
+                <p className="text-gray-500">{data.principalTitle}</p>
               </div>
             </div>
             <div className="col-span-2">
               <h2 className="text-3xl font-bold text-school-green mb-6 italic">Principal's Message</h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
-                <p>
-                  "Welcome to Nyanga High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners. Our vision is not just about academic results, but about producing holistic citizens who are ready to change the world."
-                </p>
-                <p>
-                  "We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly hitch their wagons to the stars. Our consistent track record in the Matric results is a testament to the hard work of our dedicated staff and the resilience of our students."
-                </p>
+                {data.principalMessage.map((p, i) => (
+                  <p key={i}>"{p}"</p>
+                ))}
               </div>
             </div>
           </div>
