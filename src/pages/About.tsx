@@ -74,25 +74,6 @@ export const About = () => {
           </div>
         </section>
 
-        {/* Leadership Team */}
-        <section>
-          <h2 className="text-3xl font-bold text-school-green mb-12 text-center">Our Leadership Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="text-center group">
-                <div className="aspect-square rounded-full overflow-hidden mb-4 border-4 border-transparent group-hover:border-school-green transition-all shadow-md mx-auto max-w-[200px]">
-                  <img 
-                    src={`https://i.pravatar.cc/300?img=${i + 10}`} 
-                    alt="Leader" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Staff Member {i}</h4>
-                <p className="text-gray-500">Department Head</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );
