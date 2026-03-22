@@ -4,40 +4,28 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    url: "/Hero/Hero%201.jpg",
-    caption: "Excellence in Education Since 1990"
+    url: "/Hero/Hero1.jpg",
+    caption: "Ulwazi High School: Excellence in Education"
   },
   {
-    url: "/Hero/Achievers%205.jpg",
-    caption: "Celebrating Our Triumphs"
+    url: "/Hero/Hero 2.jpg",
+    caption: "Empowering Students for Success"
   },
   {
-    url: "/Hero/Chris%20Hani%20District%20Top%20Achievers.jpg",
-    caption: "District Top Achievers"
-  },
-  {
-    url: "/Hero/Matric%20prayer.jpg",
-    caption: "A Tradition of Success"
-  },
-  {
-    url: "/Hero/Spelling%20bee%20achievers.jpg",
+    url: "/Hero/Hero 10.jpg",
     caption: "Nurturing Future Leaders"
   },
   {
-    url: "/Hero/Top%20achievrs%202.jpg",
-    caption: "Dedicated to Excellence"
-  },
-  {
-    url: "/Hero/achievers%203.jpg",
-    caption: "Empowering Students"
-  },
-  {
-    url: "/Hero/achievers%204.jpg",
+    url: "/Hero/Hero 12.jpg",
     caption: "Building Brighter Futures"
   },
   {
-    url: "/Hero/prayer%202.jpg",
-    caption: "Guided by Faith and Knowledge"
+    url: "/Hero/Sport Hero 3.jpg",
+    caption: "Excellence in Sports"
+  },
+  {
+    url: "/Hero/Award.jpg",
+    caption: "Celebrating Achievement"
   },
 ];
 
@@ -87,9 +75,9 @@ export const Hero = () => {
         <motion.h1 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="text-5xl md:text-7xl font-bold mb-4"
+          className="text-5xl md:text-7xl font-bold mb-4 uppercase"
         >
-          NYANGA HIGH SCHOOL
+          Ulwazi High School
         </motion.h1>
         <motion.p 
           initial={{ y: 20, opacity: 0 }}
@@ -97,7 +85,7 @@ export const Hero = () => {
           transition={{ delay: 0.2 }}
           className="text-xl md:text-2xl font-light italic"
         >
-          "Hitch Your Wagon To The Stars"
+          "Quality Education for a Brighter Future"
         </motion.p>
         <motion.div 
           initial={{ y: 20, opacity: 0 }}

@@ -70,11 +70,11 @@ const resultsData = {
 } as const;
 
 const bestEverStudents = [
-  { name: "Sipho Ndlovu", title: "National Top Achiever", year: "2018", image: "", desc: "Achieved 100% in Mathematics and Physical Sciences" },
-  { name: "Jane Smith", title: "Provincial Number 1", year: "2021", image: "", desc: "7 Distinctions, top student in Eastern Cape" },
-  { name: "Lwazi Mokoena", title: "Top Achiever in Commerce", year: "2019", image: "", desc: "98% in Accounting and Economics" },
-  { name: "Thandiwe Sisulu", title: "Overall Distinction", year: "2022", image: "", desc: "8 Distinctions with 95% average" },
-  { name: "Michael Chang", title: "Provincial Top 5", year: "2016", image: "", desc: "Exceptional performance in Sciences" },
+  { name: "[NAME 1]", title: "National Top Achiever", year: "2018", image: "https://images.unsplash.com/photo-1523240695661-92135f3d325e?q=80&w=2000&auto=format&fit=crop", desc: "Achieved excellence in Mathematics and Physical Sciences" },
+  { name: "[NAME 2]", title: "Provincial Number 1", year: "2021", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2000&auto=format&fit=crop", desc: "7 Distinctions, top student in Province" },
+  { name: "[NAME 3]", title: "Top Achiever in Commerce", year: "2019", image: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2000&auto=format&fit=crop", desc: "Excellence in Accounting and Economics" },
+  { name: "[NAME 4]", title: "Overall Distinction", year: "2022", image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000&auto=format&fit=crop", desc: "8 Distinctions with 95% average" },
+  { name: "[NAME 5]", title: "Provincial Top 5", year: "2016", image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2000&auto=format&fit=crop", desc: "Exceptional performance in Sciences" },
 ];
 
 const topAchieversByYear: Record<string, {name: string, achievement: string, image: string}[]> = {
@@ -178,9 +178,15 @@ export const Achievements = () => {
                 <h2 className="text-3xl md:text-5xl font-black text-school-green mb-4">
                   2019: A Year of Unparalleled Excellence
                 </h2>
-                <p className="text-lg text-gray-700 max-w-2xl italic leading-relaxed">
-                  "In 2019, Nyanga High School reached a historic peak, recording a monumental 95.4% pass rate. This achievement remains a testament to the dedication of our students and the excellence of our academic tradition."
-                </p>
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  <p className="text-lg text-gray-700 max-w-2xl italic leading-relaxed flex-grow">
+                    "In 2019, Ulwazi High School reached a historic peak, recording a monumental 95.4% pass rate. This achievement remains a testament to the dedication of our students and the excellence of our academic tradition."
+                  </p>
+                  <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-lg border-2 border-school-green/10 bg-white p-2">
+                    <img src="/Achievements/Historic pass rate.jpg" alt="Historic Pass Rate" className="w-full h-auto rounded-lg" />
+                    <p className="text-[10px] text-center text-gray-400 mt-2 uppercase font-bold">Matric Class of 2019 Record</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -195,7 +201,7 @@ export const Achievements = () => {
               <Trophy className="text-yellow-500 w-12 h-12" />
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Celebrating our 5 best ever students recorded who have left an indelible mark on Nyanga High School history.
+              Celebrating our 5 best ever students recorded who have left an indelible mark on Ulwazi High School history.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-8">

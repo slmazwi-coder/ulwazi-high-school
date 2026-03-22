@@ -150,9 +150,9 @@ export const setApplications = (items: Application[]) => setItems('admin_applica
 
 // Contact
 const defaultContact: ContactInfo = {
-  address: 'Kalinyanga Admin Area, Engcobo, South Africa, 5050',
-  phone: '047 050 2369',
-  email: 'nyangahighschool@gmail.com',
+  address: 'Mdantsane NU2, East London, South Africa',
+  phone: '043 760 0356',
+  email: 'ulwazihigh@gmail.com',
   monThu: '07:30 - 15:30',
   friday: '07:30 - 13:30',
   weekend: 'Closed',
@@ -163,15 +163,15 @@ export const setContact = (info: ContactInfo) => setObject('admin_contact', info
 // About
 const defaultAbout: AboutInfo = {
   historyParagraphs: [
-    'Founded on the principles of excellence and community service, Nyanga High School has grown from a local initiative into a regional powerhouse of academic achievement. Located in the heart of Engcobo, our school has consistently served as a beacon of hope for thousands of learners.',
-    'Our journey began with a simple mission: to provide world-class education to the youth of the Eastern Cape. Over the decades, we have expanded our facilities, refined our curriculum, and built a legacy that is reflected in our motto: "Hitch Your Wagon To The Stars."',
-    'Today, Nyanga High School is recognized as a leader in Grade 12 results, consistently producing top-tier candidates who go on to excel in universities across South Africa and beyond.',
+    'Founded on the principles of excellence and community service, Ulwazi High School has grown from a local initiative into a regional powerhouse of academic achievement. Our school has consistently served as a beacon of hope for thousands of learners.',
+    'Our journey began with a simple mission: to provide world-class education to our youth. Over the decades, we have expanded our facilities, refined our curriculum, and built a legacy that is reflected in our motto: "Quality Education for a Brighter Future."',
+    'Today, Ulwazi High School is recognized as a leader in Grade 12 results, consistently producing top-tier candidates who go on to excel in universities across South Africa and beyond.',
   ],
-  principalName: 'Mr S. Butshingi',
+  principalName: 'The Principal',
   principalTitle: 'School Principal',
   principalMessage: [
-    'Welcome to Nyanga High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners. Our vision is not just about academic results, but about producing holistic citizens who are ready to change the world.',
-    'We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly hitch their wagons to the stars. Our consistent track record in the Matric results is a testament to the hard work of our dedicated staff and the resilience of our students.',
+    'Welcome to Ulwazi High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners. Our vision is not just about academic results, but about producing holistic citizens who are ready to change the world.',
+    'We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly achieve their dreams. Our consistent track record is a testament to the hard work of our dedicated staff and the resilience of our students.',
   ],
 };
 export const getAbout = () => getObject<AboutInfo>('admin_about', defaultAbout);
@@ -196,13 +196,9 @@ export const setAchieversByYear = (year: string, items: AchieverEntry[]) => setI
 
 // Hall of Fame
 const defaultHall: HallOfFameEntry[] = [
-  { id: '1', name: 'Top Achiever 1', title: '7 Distinctions', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/Achievers%205.jpg' },
-  { id: '2', name: 'Top Achiever 2', title: '6 Distinctions', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/achievers%203.jpg' },
-  { id: '3', name: 'Top Achiever 3', title: 'Top in Math', year: '2025', desc: '', image: '/Achievements/HALL%20OF%20FAME/2025/achievers%204.jpg' },
-  { id: '4', name: 'Top Achiever 2024', title: 'Overall Best', year: '2024', desc: '', image: '/Achievements/HALL%20OF%20FAME/2024/1.jpg' },
-  { id: '5', name: 'Top Achiever 1 (2023)', title: '7 Distinctions', year: '2023', desc: '', image: '/Achievements/HALL%20OF%20FAME/2023/1.jpg' },
-  { id: '6', name: 'Top Achiever 2 (2023)', title: 'Top in Physics', year: '2023', desc: '', image: '/Achievements/HALL%20OF%20FAME/2023/2.jpg' },
-  { id: '7', name: 'Top Achiever 3 (2023)', title: 'Top in English', year: '2023', desc: '', image: '/Achievements/HALL%20OF%20FAME/2023/3.jpg' }
+  { id: '1', name: '[ACHIEVER 1]', title: '7 Distinctions', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1523240695661-92135f3d325e?q=80&w=2000&auto=format&fit=crop' },
+  { id: '2', name: '[ACHIEVER 2]', title: '6 Distinctions', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2000&auto=format&fit=crop' },
+  { id: '3', name: '[ACHIEVER 3]', title: 'Top in Math', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2000&auto=format&fit=crop' },
 ];
 export const getHallOfFame = () => getItems<HallOfFameEntry>('admin_hall_of_fame').length ? getItems<HallOfFameEntry>('admin_hall_of_fame') : defaultHall;
 export const setHallOfFame = (items: HallOfFameEntry[]) => setItems('admin_hall_of_fame', items);
@@ -219,7 +215,7 @@ export const setResultsByYear = (year: string, data: YearResults) => setObject(`
 // Auth
 export const isAuthenticated = () => localStorage.getItem('admin_auth') === 'true';
 export const login = (password: string): boolean => {
-  if (password === 'nyanga2025') {
+  if (password === 'admin2025') {
     localStorage.setItem('admin_auth', 'true');
     return true;
   }

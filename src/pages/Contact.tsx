@@ -26,8 +26,8 @@ export const Contact = () => {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Our Address</h4>
-                  <p className="text-gray-600">{info.address}</p>
+                  <h3 className="font-bold text-gray-900">Address</h3>
+                  <p className="text-gray-600">Mdantsane NU2, East London, South Africa</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -35,8 +35,8 @@ export const Contact = () => {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Phone Number</h4>
-                  <p className="text-gray-600">{info.phone}</p>
+                  <h3 className="font-bold text-gray-900">Phone</h3>
+                  <p className="text-gray-600">043 760 0356</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -44,8 +44,8 @@ export const Contact = () => {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Email Address</h4>
-                  <p className="text-gray-600">{info.email}</p>
+                  <h3 className="font-bold text-gray-900">Email</h3>
+                  <p className="text-gray-600">ulwazihigh@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -64,7 +64,7 @@ export const Contact = () => {
             <div className="mt-12 rounded-3xl overflow-hidden h-[300px] border-4 border-gray-100 shadow-inner bg-gray-200 relative">
               <div className="absolute inset-0 flex items-center justify-center text-gray-500 flex-col gap-2">
                 <MapPin size={48} className="text-school-green" />
-                <p className="font-bold">Engcobo, South Africa</p>
+                <p className="font-bold">East London, South Africa</p>
                 <p className="text-sm">Map View Placeholder</p>
               </div>
               {/* In a real app, I'd use an iframe here */}

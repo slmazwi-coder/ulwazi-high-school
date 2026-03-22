@@ -8,9 +8,9 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-2xl font-bold mb-6">Nyanga High School</h3>
+            <h3 className="text-2xl font-bold mb-6">Ulwazi High School</h3>
             <p className="text-green-100 mb-6 italic">
-              "A world-class institution that competes in producing holistic and well-equipped citizens, who positively change the world."
+              "Quality Education for a Brighter Future"
             </p>
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><Facebook size={20} /></a>
@@ -24,15 +24,15 @@ export const Footer = () => {
             <ul className="space-y-4 text-green-100">
               <li className="flex items-start gap-3">
                 <MapPin className="shrink-0 mt-1" size={18} />
-                <span>Kalinyanga Admin Area, Engcobo, South Africa, 5050</span>
+                <span>Mdantsane NU2, East London, South Africa</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} />
-                <span>047 050 2369</span>
+                <span>043 760 0356</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} />
-                <span>nyangahighschool@gmail.com</span>
+                <span>ulwazihigh@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -58,8 +58,13 @@ export const Footer = () => {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center text-green-200 text-sm">
-          <p>© {new Date().getFullYear()} Nyanga High School. All Rights Reserved. | Hitch Your Wagon To The Stars</p>
-          <Link to="/admin/login" className="text-green-200/30 hover:text-green-200/60 text-xs mt-2 inline-block transition-colors">Staff Portal</Link>
+          <p>© {new Date().getFullYear()} Ulwazi High School. All Rights Reserved.</p>
+          <div className="mt-4 flex justify-center gap-4 text-xs">
+            <span className="px-2 py-1 bg-white/10 rounded">Closed now</span>
+            <span className="px-2 py-1 bg-white/10 rounded">Communities</span>
+            <span className="px-2 py-1 bg-white/10 rounded">Subscriber hub</span>
+          </div>
+          <Link to="/admin/login" className="text-green-200/30 hover:text-green-200/60 text-xs mt-4 inline-block transition-colors">Staff Portal</Link>
         </div>
       </div>
     </footer>

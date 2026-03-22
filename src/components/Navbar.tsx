@@ -23,10 +23,12 @@ export const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3">
-              <img src="/Logo/Badge.jpg" alt="Nyanga High School Badge" className="h-12 w-12 rounded-xl object-cover shadow-lg" />
+              <div className="h-12 w-12 rounded-xl overflow-hidden border border-school-green/20 shadow-lg">
+                <img src="/Logo/Badge.jpg" alt="Ulwazi High School Badge" className="w-full h-full object-cover" />
+              </div>
               <div className="hidden md:block">
-                <span className="text-xl font-bold text-school-green block leading-none">NYANGA</span>
-                <span className="text-sm font-semibold text-gray-500">HIGH SCHOOL</span>
+                <span className="text-xl font-bold text-school-green block leading-none">Ulwazi High School</span>
+                <span className="text-sm font-semibold text-gray-500">EAST LONDON</span>
               </div>
             </Link>
           </div>

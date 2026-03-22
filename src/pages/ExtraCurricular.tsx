@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Trophy, Music, Users, Star, Dumbbell, Target, BookOpen, Mic } from 'lucide-react';
+import { Trophy, Music, Users, Star, Dumbbell, Target, BookOpen, Mic, FileText } from 'lucide-react';
 import { getActivities, type Activity } from '../admin/utils/storage';
 
 const sportsPrograms = [
@@ -114,7 +114,7 @@ export const ExtraCurricular = () => {
         <h1 className="section-title text-center">Sports & Culture</h1>
         
         <p className="text-center text-xl text-gray-600 mb-16 max-w-3xl mx-auto">
-          At Nyanga High School, we believe in a holistic education. Our extra-curricular programs are designed to discover and nurture the diverse talents of our learners.
+          At Ulwazi High School, we believe in a holistic education. Our extra-curricular programs are designed to discover and nurture the diverse talents of our learners.
         </p>
 
         {/* Sports */}
@@ -144,6 +144,32 @@ export const ExtraCurricular = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {culturePrograms.map((prog, i) => <ProgramCard key={i} prog={prog} />)}
+          </div>
+        </section>
+
+        <section className="mb-24">
+          <h2 className="text-2xl font-bold text-school-green mb-8 flex items-center gap-3">
+             Athletics Excellence
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <img src="/Extra curricular/Athletics/Goniwe 1.jpg" alt="Athletics 1" className="rounded-xl shadow-md h-48 w-full object-cover" />
+            <img src="/Extra curricular/Athletics/Goniwe 2.jpg" alt="Athletics 2" className="rounded-xl shadow-md h-48 w-full object-cover" />
+            <img src="/Extra curricular/Athletics/Goniwe 3.jpg" alt="Athletics 3" className="rounded-xl shadow-md h-48 w-full object-cover" />
+            <img src="/Extra curricular/Athletics/Goniwe 4.jpg" alt="Athletics 4" className="rounded-xl shadow-md h-48 w-full object-cover" />
+          </div>
+          <div className="bg-green-50 p-6 rounded-2xl border border-green-100 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold text-school-green mb-2">Sinothando Goniwe • 3000m Athletics</h3>
+              <p className="text-gray-600">Outstanding performance in the 3000m event. Read the full achievement report below.</p>
+            </div>
+            <a 
+              href="/Extra curricular/Athletics/Sinothando Goniwe 3000m.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-primary flex items-center gap-2 whitespace-nowrap"
+            >
+              <FileText size={18} /> View Achievement PDF
+            </a>
           </div>
         </section>
 
@@ -178,28 +204,28 @@ export const ExtraCurricular = () => {
             </h2>
             <div className="bg-school-green rounded-3xl p-8 text-white">
               <p className="text-lg italic mb-8 text-green-100">
-                "Recognizing those who have gone above and beyond in representing Nyanga High School at regional, provincial, and national levels."
+                "Recognizing those who have gone above and beyond in representing Ulwazi High School at regional, provincial, and national levels."
               </p>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold text-lg">1</div>
                   <div>
-                    <p className="font-bold">L. Ndlovu</p>
-                    <p className="text-sm text-green-100">National Rugby U18 Representative (2024)</p>
+                    <p className="font-bold">Sinothando Goniwe</p>
+                    <p className="text-sm text-green-100">3000m Regional Athletics Champion</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold text-lg">2</div>
                   <div>
-                    <p className="font-bold">S. Mbeki</p>
-                    <p className="text-sm text-green-100">Provincial Choir Soloist Winner (2023)</p>
+                    <p className="font-bold">Ulwazi Choir</p>
+                    <p className="text-sm text-green-100">Provincial Choral Competition Winners</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold text-lg">3</div>
                   <div>
-                    <p className="font-bold">M. Dlamini</p>
-                    <p className="text-sm text-green-100">National Spelling Bee Finalist (2025)</p>
+                    <p className="font-bold">Matric Class 2019</p>
+                    <p className="text-sm text-green-100">95.4% Historic Pass Rate Achievement</p>
                   </div>
                 </div>
               </div>

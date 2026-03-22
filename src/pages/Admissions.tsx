@@ -31,7 +31,7 @@ export const Admissions = () => {
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Application Submitted!</h2>
           <p className="text-gray-600 mb-8">
-            Thank you for applying to Nyanga High School. We have received your application and our admissions team will contact you shortly.
+            Thank you for applying to Ulwazi High School. We have received your application and our admissions team will contact you shortly.
           </p>
           <button 
             onClick={() => setSubmitted(false)}
