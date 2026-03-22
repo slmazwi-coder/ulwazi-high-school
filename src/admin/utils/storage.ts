@@ -196,18 +196,18 @@ export const setAchieversByYear = (year: string, items: AchieverEntry[]) => setI
 
 // Hall of Fame
 const defaultHall: HallOfFameEntry[] = [
-  { id: '1', name: '[ACHIEVER 1]', title: '7 Distinctions', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1523240695661-92135f3d325e?q=80&w=2000&auto=format&fit=crop' },
-  { id: '2', name: '[ACHIEVER 2]', title: '6 Distinctions', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2000&auto=format&fit=crop' },
-  { id: '3', name: '[ACHIEVER 3]', title: 'Top in Math', year: '2025', desc: '', image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2000&auto=format&fit=crop' },
+  { id: '1', name: '[ACHIEVER 1]', title: '7 Distinctions', year: '2025', desc: '', image: '' },
+  { id: '2', name: '[ACHIEVER 2]', title: '6 Distinctions', year: '2025', desc: '', image: '' },
+  { id: '3', name: '[ACHIEVER 3]', title: 'Top in Math', year: '2025', desc: '', image: '' },
 ];
 export const getHallOfFame = () => getItems<HallOfFameEntry>('admin_hall_of_fame').length ? getItems<HallOfFameEntry>('admin_hall_of_fame') : defaultHall;
 export const setHallOfFame = (items: HallOfFameEntry[]) => setItems('admin_hall_of_fame', items);
 
 // Results by year
 const defaultResults: Record<string, YearResults> = {
-  "2025": { overall: 89.9, bachelor: 206, bachelorRate: 71.8, distinctions: 451, wrote: 287, subjects: [{ subject: "Accounting", rate: 90.6 }, { subject: "Mathematics", rate: 71.1 }, { subject: "Physical Sciences", rate: 82.1 }] },
+  "2025": { overall: 98.3, bachelor: 215, bachelorRate: 85.2, distinctions: 512, wrote: 280, subjects: [{ subject: "Accounting", rate: 98.5 }, { subject: "Mathematics", rate: 89.1 }] },
   "2024": { overall: 85.4, bachelor: 195, bachelorRate: 68.2, distinctions: 398, wrote: 286, subjects: [{ subject: "Accounting", rate: 88.5 }, { subject: "IsiXhosa HL", rate: 99.1 }] },
-  "2023": { overall: 82.1, bachelor: 178, bachelorRate: 64.5, distinctions: 345, wrote: 276, subjects: [{ subject: "Life Orientation", rate: 100 }, { subject: "Geography", rate: 93.5 }] }
+  "2023": { overall: 89.9, bachelor: 206, bachelorRate: 71.8, distinctions: 451, wrote: 287, subjects: [{ subject: "Accounting", rate: 90.6 }, { subject: "Mathematics", rate: 71.1 }, { subject: "Physical Sciences", rate: 82.1 }] }
 };
 export const getResultsByYear = (year: string) => getObject<YearResults | null>(`admin_results_${year}`, defaultResults[year] || null);
 export const setResultsByYear = (year: string, data: YearResults) => setObject(`admin_results_${year}`, data);

@@ -5,24 +5,24 @@ import { getHallOfFame, getResultsByYear, type HallOfFameEntry, type YearResults
 
 const resultsData = {
   "2025": {
-    overall: 89.9,
-    bachelor: 206,
-    bachelorRate: 71.8,
-    distinctions: 451,
-    wrote: 287,
+    overall: 98.3,
+    bachelor: 215,
+    bachelorRate: 85.2,
+    distinctions: 512,
+    wrote: 280,
     subjects: [
-      { subject: "Accounting", rate: 90.6 },
-      { subject: "Agricultural Sciences", rate: 97.9 },
-      { subject: "Business Studies", rate: 98.1 },
-      { subject: "Economics", rate: 96.2 },
+      { subject: "Accounting", rate: 98.5 },
+      { subject: "Agricultural Sciences", rate: 100 },
+      { subject: "Business Studies", rate: 99.1 },
+      { subject: "Economics", rate: 98.2 },
       { subject: "English FAL", rate: 100 },
-      { subject: "Geography", rate: 99.3 },
+      { subject: "Geography", rate: 99.8 },
       { subject: "IsiXhosa HL", rate: 100 },
-      { subject: "History", rate: 97.9 },
+      { subject: "History", rate: 99.5 },
       { subject: "Life Orientation", rate: 100 },
-      { subject: "Life Sciences", rate: 97 },
-      { subject: "Mathematics", rate: 71.1 },
-      { subject: "Physical Sciences", rate: 82.1 },
+      { subject: "Life Sciences", rate: 98.5 },
+      { subject: "Mathematics", rate: 89.1 },
+      { subject: "Physical Sciences", rate: 92.5 },
     ]
   },
   "2024": {
@@ -70,11 +70,11 @@ const resultsData = {
 } as const;
 
 const bestEverStudents = [
-  { name: "[NAME 1]", title: "National Top Achiever", year: "2018", image: "https://images.unsplash.com/photo-1523240695661-92135f3d325e?q=80&w=2000&auto=format&fit=crop", desc: "Achieved excellence in Mathematics and Physical Sciences" },
-  { name: "[NAME 2]", title: "Provincial Number 1", year: "2021", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2000&auto=format&fit=crop", desc: "7 Distinctions, top student in Province" },
-  { name: "[NAME 3]", title: "Top Achiever in Commerce", year: "2019", image: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2000&auto=format&fit=crop", desc: "Excellence in Accounting and Economics" },
-  { name: "[NAME 4]", title: "Overall Distinction", year: "2022", image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000&auto=format&fit=crop", desc: "8 Distinctions with 95% average" },
-  { name: "[NAME 5]", title: "Provincial Top 5", year: "2016", image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2000&auto=format&fit=crop", desc: "Exceptional performance in Sciences" },
+  { name: "[NAME 1]", title: "National Top Achiever", year: "2018", image: "", desc: "Achieved excellence in Mathematics and Physical Sciences" },
+  { name: "[NAME 2]", title: "Provincial Number 1", year: "2021", image: "", desc: "7 Distinctions, top student in Province" },
+  { name: "[NAME 3]", title: "Top Achiever in Commerce", year: "2019", image: "", desc: "Excellence in Accounting and Economics" },
+  { name: "[NAME 4]", title: "Overall Distinction", year: "2022", image: "", desc: "8 Distinctions with 95% average" },
+  { name: "[NAME 5]", title: "Provincial Top 5", year: "2016", image: "", desc: "Exceptional performance in Sciences" },
 ];
 
 const topAchieversByYear: Record<string, {name: string, achievement: string, image: string}[]> = {
@@ -121,7 +121,7 @@ const StudentAvatar = ({ image, name, title, year }: { image: string, name: stri
           <p className="text-xs text-gray-400 italic">Class of {year}</p>
         </div>
       )}
-      <div className="absolute top-0 right-0 bg-school-green/10 p-4 text-school-green opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-0 right-0 bg-school-red/10 p-4 text-school-red opacity-0 group-hover:opacity-100 transition-opacity">
         <Award size={24} />
       </div>
     </div>
@@ -162,30 +162,26 @@ export const Achievements = () => {
 
         {/* --- HISTORIC MILESTONE SECTION --- */}
         <section className="mb-24">
-          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl">
+          <div className="bg-red-50 border-2 border-red-200 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-              <Star size={200} className="text-yellow-600" />
+              <Star size={200} className="text-red-600" />
             </div>
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-              <div className="w-40 h-40 bg-yellow-400 rounded-full flex flex-col items-center justify-center text-yellow-900 border-8 border-white shadow-lg shrink-0">
-                <span className="text-4xl font-black">95.4%</span>
+              <div className="w-40 h-40 bg-red-600 rounded-full flex flex-col items-center justify-center text-white border-8 border-white shadow-lg shrink-0">
+                <span className="text-4xl font-black">98.3%</span>
                 <span className="text-sm font-bold uppercase tracking-tighter italic">Pass Rate</span>
               </div>
               <div>
-                <div className="flex items-center gap-2 text-yellow-700 font-bold uppercase tracking-widest text-sm mb-2">
+                <div className="flex items-center gap-2 text-red-700 font-bold uppercase tracking-widest text-sm mb-2">
                   <Star size={16} fill="currentColor" /> Highest Historic Achievement <Star size={16} fill="currentColor" />
                 </div>
-                <h2 className="text-3xl md:text-5xl font-black text-school-green mb-4">
-                  2019: A Year of Unparalleled Excellence
+                <h2 className="text-3xl md:text-5xl font-black text-school-red mb-4">
+                  2025: A Year of Unparalleled Excellence
                 </h2>
                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <p className="text-lg text-gray-700 max-w-2xl italic leading-relaxed flex-grow">
-                    "In 2019, Ulwazi High School reached a historic peak, recording a monumental 95.4% pass rate. This achievement remains a testament to the dedication of our students and the excellence of our academic tradition."
+                  <p className="text-lg text-gray-700 max-w-3xl italic leading-relaxed flex-grow">
+                    "In 2025, Ulwazi High School reached a historic peak, recording a monumental 98.3% pass rate. This achievement remains a testament to the dedication of our students and the excellence of our academic tradition."
                   </p>
-                  <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-lg border-2 border-school-green/10 bg-white p-2">
-                    <img src="/Achievements/Historic pass rate.jpg" alt="Historic Pass Rate" className="w-full h-auto rounded-lg" />
-                    <p className="text-[10px] text-center text-gray-400 mt-2 uppercase font-bold">Matric Class of 2019 Record</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -195,7 +191,7 @@ export const Achievements = () => {
         {/* --- HALL OF FAME: 5 BEST EVER --- */}
         <section className="mb-32">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-extrabold text-school-green mb-4 flex items-center justify-center gap-4">
+            <h2 className="text-4xl font-extrabold text-school-red mb-4 flex items-center justify-center gap-4">
               <Trophy className="text-yellow-500 w-12 h-12" />
               Hall of Fame
               <Trophy className="text-yellow-500 w-12 h-12" />
@@ -219,7 +215,7 @@ export const Achievements = () => {
                 />
                 <div className="p-6 text-center">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{student.name}</h3>
-                  <div className="text-school-green text-sm font-bold mb-3 flex items-center justify-center gap-1">
+                  <div className="text-school-red text-sm font-bold mb-3 flex items-center justify-center gap-1">
                     <Medal size={16} /> {student.title}
                   </div>
                   <p className="text-gray-500 text-xs leading-relaxed">{student.desc}</p>
@@ -233,15 +229,15 @@ export const Achievements = () => {
         {/* --- MATRIC RESULTS BY YEAR --- */}
         <section className="mb-32">
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
-            <h2 className="text-3xl font-bold text-school-green flex items-center gap-3">
-              <BarChart3 className="text-school-green" /> Matric Results Summary
+            <h2 className="text-3xl font-bold text-school-red flex items-center gap-3">
+              <BarChart3 className="text-school-red" /> Matric Results Summary
             </h2>
             <div className="flex gap-2 mt-4 md:mt-0 bg-gray-100 p-1 rounded-xl">
               {(["2025", "2024", "2023"] as const).map(year => (
                 <button
                   key={year}
                   onClick={() => setActiveResultsYear(year)}
-                  className={`px-6 py-2 rounded-lg font-bold transition-all ${activeResultsYear === year ? 'bg-school-green text-white shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
+                  className={`px-6 py-2 rounded-lg font-bold transition-all ${activeResultsYear === year ? 'bg-school-red text-white shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
                 >
                   {year}
                 </button>
@@ -264,7 +260,7 @@ export const Achievements = () => {
                 </div>
               ) : (
                 <>
-                  <div className="bg-school-green rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden mb-12">
+                  <div className="bg-school-red rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden mb-12">
                     <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                       <TrendingUp size={200} />
                     </div>
@@ -275,19 +271,19 @@ export const Achievements = () => {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                         <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                           <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.overall}%</p>
-                          <p className="text-green-100 text-sm font-medium">Overall Pass Rate</p>
+                          <p className="text-red-100 text-sm font-medium">Overall Pass Rate</p>
                         </div>
                         <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                           <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.bachelor}</p>
-                          <p className="text-green-100 text-sm font-medium">Bachelor Passes ({currentResults.bachelorRate}%)</p>
+                          <p className="text-red-100 text-sm font-medium">Bachelor Passes ({currentResults.bachelorRate}%)</p>
                         </div>
                         <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                           <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.distinctions}</p>
-                          <p className="text-green-100 text-sm font-medium">Total Distinctions</p>
+                          <p className="text-red-100 text-sm font-medium">Total Distinctions</p>
                         </div>
                         <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10 text-center md:text-left">
                           <p className="text-4xl md:text-5xl font-bold mb-2">{currentResults.wrote}</p>
-                          <p className="text-green-100 text-sm font-medium">Learners Wrote</p>
+                          <p className="text-red-100 text-sm font-medium">Learners Wrote</p>
                         </div>
                       </div>
                     </div>
@@ -300,14 +296,14 @@ export const Achievements = () => {
                         <div key={i} className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
                           <div className="flex justify-between items-center mb-3">
                             <span className="font-semibold text-gray-700">{stat.subject}</span>
-                            <span className="text-school-green font-bold">{stat.rate}%</span>
+                            <span className="text-school-red font-bold">{stat.rate}%</span>
                           </div>
                           <div className="w-full bg-gray-100 rounded-full h-2">
                             <motion.div 
                               initial={{ width: 0 }}
                               animate={{ width: `${stat.rate}%` }}
                               transition={{ duration: 1, delay: i * 0.05 }}
-                              className="bg-school-green h-2 rounded-full"
+                              className="bg-school-red h-2 rounded-full"
                             />
                           </div>
                         </div>
@@ -324,8 +320,8 @@ export const Achievements = () => {
         {/* --- TOP ACHIEVERS PER YEAR —-- */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-school-green flex items-center justify-center gap-3 mb-4">
-              <Calendar className="text-school-green" /> Top Achievers Timeline
+            <h2 className="text-3xl font-bold text-school-red flex items-center justify-center gap-3 mb-4">
+              <Calendar className="text-school-red" /> Top Achievers Timeline
             </h2>
             <p className="text-gray-600 italic">Select a year to see the class achievers.</p>
           </div>
@@ -337,8 +333,8 @@ export const Achievements = () => {
                 onClick={() => setActiveAchieversYear(year)}
                 className={`px-5 py-2 rounded-full font-bold transition-all text-sm ${
                   activeAchieversYear === year 
-                    ? 'bg-school-green text-white shadow-lg scale-105' 
-                    : 'bg-white text-gray-500 border border-gray-200 hover:border-school-green hover:text-school-green'
+                    ? 'bg-school-red text-white shadow-lg scale-105' 
+                    : 'bg-white text-gray-500 border border-gray-200 hover:border-school-red hover:text-school-red'
                 }`}
               >
                 {year}
@@ -366,7 +362,7 @@ export const Achievements = () => {
                     />
                     <div className="mt-4">
                       <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
-                      <p className="text-xs font-semibold text-school-green uppercase tracking-wider">{person.title}</p>
+                      <p className="text-xs font-semibold text-school-red uppercase tracking-wider">{person.title}</p>
                     </div>
                   </div>
                 ))

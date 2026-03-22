@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { getAbout, setAbout, type AboutInfo } from '../utils/storage';
 import { runFullDefenseScan } from '../utils/defense';
 import { Save, Plus, Trash2, ShieldCheck, Loader2 } from 'lucide-react';
@@ -51,7 +52,7 @@ export const AboutEditor = () => {
           <button 
             onClick={save} 
             disabled={isScanning}
-            className="flex items-center gap-2 bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+            className="flex items-center gap-2 bg-school-red text-white px-6 py-2 rounded-xl font-medium hover:bg-red-700 disabled:opacity-50"
           >
             {isScanning ? (
               <><Loader2 size={18} className="animate-spin" /> Scanning...</>
@@ -69,7 +70,7 @@ export const AboutEditor = () => {
       <section className="bg-gray-800 border border-gray-700 rounded-2xl p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold">School History</h2>
-          <button onClick={addParagraph} className="flex items-center gap-1 text-sm text-school-green hover:underline"><Plus size={14} /> Add Paragraph</button>
+          <button onClick={addParagraph} className="flex items-center gap-1 text-sm text-school-red hover:underline"><Plus size={14} /> Add Paragraph</button>
         </div>
         <div className="space-y-4">
           {info.historyParagraphs.map((p, i) => (

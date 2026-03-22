@@ -4,12 +4,12 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react'
 
 export const Footer = () => {
   return (
-    <footer className="bg-school-green text-white pt-16 pb-8">
+    <footer className="bg-school-red text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-bold mb-6">Ulwazi High School</h3>
-            <p className="text-green-100 mb-6 italic">
+            <p className="text-red-100 mb-6 italic">
               "Quality Education for a Brighter Future"
             </p>
             <div className="flex gap-4">
@@ -21,7 +21,7 @@ export const Footer = () => {
 
           <div>
             <h4 className="text-lg font-bold mb-6 border-b border-white/20 pb-2">Contact Us</h4>
-            <ul className="space-y-4 text-green-100">
+            <ul className="space-y-4 text-red-100">
               <li className="flex items-start gap-3">
                 <MapPin className="shrink-0 mt-1" size={18} />
                 <span>Mdantsane NU2, East London, South Africa</span>
@@ -39,7 +39,7 @@ export const Footer = () => {
 
           <div>
             <h4 className="text-lg font-bold mb-6 border-b border-white/20 pb-2">Quick Links</h4>
-            <ul className="space-y-3 text-green-100">
+            <ul className="space-y-3 text-red-100">
               <li><a href="/about" className="hover:text-white transition-colors">About Our School</a></li>
               <li><a href="/documents" className="hover:text-white transition-colors">Student Portal</a></li>
               <li><a href="/achievements" className="hover:text-white transition-colors">Hall of Fame</a></li>
@@ -49,7 +49,7 @@ export const Footer = () => {
 
           <div>
             <h4 className="text-lg font-bold mb-6 border-b border-white/20 pb-2">School Hours</h4>
-            <ul className="space-y-3 text-green-100">
+            <ul className="space-y-3 text-red-100">
               <li className="flex justify-between"><span>Mon - Thu:</span> <span>07:30 - 15:30</span></li>
               <li className="flex justify-between"><span>Friday:</span> <span>07:30 - 13:30</span></li>
               <li className="flex justify-between"><span>Sat - Sun:</span> <span>Closed</span></li>
@@ -57,14 +57,14 @@ export const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-white/10 pt-8 text-center text-green-200 text-sm">
+        <div className="border-t border-white/10 pt-8 text-center text-red-100 text-sm">
           <p>© {new Date().getFullYear()} Ulwazi High School. All Rights Reserved.</p>
           <div className="mt-4 flex justify-center gap-4 text-xs">
             <span className="px-2 py-1 bg-white/10 rounded">Closed now</span>
             <span className="px-2 py-1 bg-white/10 rounded">Communities</span>
             <span className="px-2 py-1 bg-white/10 rounded">Subscriber hub</span>
           </div>
-          <Link to="/admin/login" className="text-green-200/30 hover:text-green-200/60 text-xs mt-4 inline-block transition-colors">Staff Portal</Link>
+          <Link to="/admin/login" className="text-red-100/30 hover:text-red-100/60 text-xs mt-4 inline-block transition-colors">Staff Portal</Link>
         </div>
       </div>
     </footer>

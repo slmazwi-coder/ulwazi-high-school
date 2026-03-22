@@ -41,10 +41,10 @@ export const NewsSection = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-bold text-school-green flex items-center gap-2">
+          <h2 className="text-3xl font-bold text-school-red flex items-center gap-2">
             <Bell className="text-yellow-500" /> News & Notices
           </h2>
-          <button className="text-school-green font-semibold hover:underline">View All</button>
+          <button className="text-school-red font-semibold hover:underline">View All</button>
         </div>
 
         {notices.length === 0 ? (
@@ -54,7 +54,7 @@ export const NewsSection = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {notices.map((notice) => (
-              <div key={notice.id} className="card flex flex-col h-full border-l-4 border-l-school-green overflow-hidden group">
+              <div key={notice.id} className="card flex flex-col h-full border-l-4 border-l-school-red overflow-hidden group">
                 {notice.image && (
                   <div className="h-48 -mx-6 -mt-6 mb-6 overflow-hidden">
                     <img 
@@ -78,12 +78,12 @@ export const NewsSection = () => {
                     href={notice.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-school-green font-bold flex items-center gap-2 hover:underline"
+                    className="text-school-red font-bold flex items-center gap-2 hover:underline"
                   >
                     View Document <Info size={16} />
                   </a>
                 ) : (
-                  <button className="text-school-green font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                  <button className="text-school-red font-medium flex items-center gap-1 hover:gap-2 transition-all">
                     Read More <Info size={16} />
                   </button>
                 )}

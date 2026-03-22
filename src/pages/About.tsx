@@ -20,7 +20,7 @@ export const About = () => {
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-school-green mb-6">Our History & Formation</h2>
+            <h2 className="text-2xl font-bold text-school-red mb-6">Our History & Formation</h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               {data.historyParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -43,7 +43,7 @@ export const About = () => {
 
         {/* Principal's Message */}
         <section className="bg-gray-50 rounded-3xl p-12 mb-24 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 text-school-green/10">
+          <div className="absolute top-0 right-0 p-8 text-school-red/10">
             <Quote size={120} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
@@ -58,18 +58,18 @@ export const About = () => {
                   href="/About/About.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="absolute inset-0 bg-school-green/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold gap-2"
+                  className="absolute inset-0 bg-school-red/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold gap-2"
                 >
                   View Profile Info (PDF)
                 </a>
               </div>
               <div className="mt-4 text-center">
-                <h3 className="text-xl font-bold text-school-green">{data.principalName}</h3>
+                <h3 className="text-xl font-bold text-school-red">{data.principalName}</h3>
                 <p className="text-gray-500">{data.principalTitle}</p>
               </div>
             </div>
             <div className="col-span-2">
-              <h2 className="text-3xl font-bold text-school-green mb-6 italic">Principal's Message</h2>
+              <h2 className="text-3xl font-bold text-school-red mb-6 italic">Principal's Message</h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 {data.principalMessage.map((p, i) => (
                   <p key={i}>"{p}"</p>

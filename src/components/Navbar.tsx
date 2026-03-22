@@ -23,11 +23,11 @@ export const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-xl overflow-hidden border border-school-green/20 shadow-lg">
+              <div className="h-12 w-12 rounded-xl overflow-hidden border border-school-red/20 shadow-lg">
                 <img src="/Logo/Badge.jpg" alt="Ulwazi High School Badge" className="w-full h-full object-cover" />
               </div>
               <div className="hidden md:block">
-                <span className="text-xl font-bold text-school-green block leading-none">Ulwazi High School</span>
+                <span className="text-xl font-bold text-school-red block leading-none">Ulwazi High School</span>
                 <span className="text-sm font-semibold text-gray-500">EAST LONDON</span>
               </div>
             </Link>
@@ -42,8 +42,8 @@ export const Navbar = () => {
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition-colors",
                   location.pathname === link.path
-                    ? "text-school-green bg-green-50"
-                    : "text-gray-600 hover:text-school-green hover:bg-gray-50"
+                    ? "text-school-red bg-red-50"
+                    : "text-gray-600 hover:text-school-red hover:bg-gray-50"
                 )}
               >
                 {link.name}
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-school-green p-2"
+              className="text-gray-600 hover:text-school-red p-2"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -75,8 +75,8 @@ export const Navbar = () => {
                 className={cn(
                   "block px-3 py-2 rounded-md text-base font-medium",
                   location.pathname === link.path
-                    ? "text-school-green bg-green-50"
-                    : "text-gray-600 hover:text-school-green hover:bg-gray-50"
+                    ? "text-school-red bg-red-50"
+                    : "text-gray-600 hover:text-school-red hover:bg-gray-50"
                 )}
               >
                 {link.name}

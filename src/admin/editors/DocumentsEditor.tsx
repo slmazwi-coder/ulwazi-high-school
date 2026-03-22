@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { getDocuments, setDocuments, generateId, type DocumentItem } from '../utils/storage';
 import { runFullDefenseScan } from '../utils/defense';
 import { Plus, Trash2, Download, FileText, X, Upload, ShieldCheck, Loader2 } from 'lucide-react';
@@ -76,7 +77,7 @@ export const DocumentsEditor = () => {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">Document Management</h1>
-        <button onClick={() => setShowUpload(!showUpload)} className="flex items-center gap-2 bg-school-green text-white px-4 py-2 rounded-xl font-medium hover:bg-green-800">
+        <button onClick={() => setShowUpload(!showUpload)} className="flex items-center gap-2 bg-school-red text-white px-4 py-2 rounded-xl font-medium hover:bg-red-700">
           <Plus size={18} /> Upload Document
         </button>
       </div>
@@ -112,7 +113,7 @@ export const DocumentsEditor = () => {
             <button 
               onClick={addDocument} 
               disabled={!newDoc.fileData || isScanning} 
-              className="bg-school-green text-white px-6 py-2 rounded-xl font-medium hover:bg-green-800 disabled:opacity-50"
+              className="bg-school-red text-white px-6 py-2 rounded-xl font-medium hover:bg-red-700 disabled:opacity-50"
             >
               {isScanning ? (
                 <><Loader2 size={18} className="animate-spin" /> Scanning...</>

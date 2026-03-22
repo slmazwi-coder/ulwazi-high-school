@@ -43,7 +43,7 @@ export const Hero = () => {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <div className="relative h-[650px] w-full overflow-hidden bg-school-green">
+    <div className="relative h-[650px] w-full overflow-hidden bg-school-red">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -93,7 +93,7 @@ export const Hero = () => {
           transition={{ delay: 0.4 }}
           className="mt-8 flex gap-4"
         >
-          <button className="btn-primary bg-white text-school-green hover:bg-gray-100">
+          <button className="btn-primary bg-white text-school-red hover:bg-gray-100">
             Admissions 2026
           </button>
           <button className="btn-primary border-2 border-white bg-transparent hover:bg-white/10">
