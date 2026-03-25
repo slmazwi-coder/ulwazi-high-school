@@ -47,10 +47,10 @@ export const Hero = () => {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
           <img
@@ -59,9 +59,9 @@ export const Hero = () => {
             className="h-full w-full object-contain object-center opacity-50"
           />
           <div className="absolute bottom-20 left-0 right-0 text-center z-20">
-            <motion.p 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               key={`caption-${currentIndex}`}
               className="text-white/80 text-lg md:text-xl font-medium tracking-wide uppercase"
             >
@@ -72,25 +72,25 @@ export const Hero = () => {
       </AnimatePresence>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-        <motion.h1 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           className="text-5xl md:text-7xl font-bold mb-4 uppercase"
         >
           Ulwazi High School
         </motion.h1>
-        <motion.p 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
           className="text-xl md:text-2xl font-light italic"
         >
-          "Quality Education for a Brighter Future"
+          "Knowledge is power"
         </motion.p>
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
           className="mt-8 flex gap-4"
         >
           <button className="btn-primary bg-white text-school-red hover:bg-gray-100">
@@ -111,8 +111,8 @@ export const Hero = () => {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-30">
         {slides.map((_, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className={`h-2 w-2 rounded-full transition-colors ${i === currentIndex ? 'bg-white' : 'bg-white/40'}`}
           />
         ))}

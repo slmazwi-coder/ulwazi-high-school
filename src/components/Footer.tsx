@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -10,12 +10,18 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-bold mb-6">Ulwazi High School</h3>
             <p className="text-red-100 mb-6 italic">
-              "Quality Education for a Brighter Future"
+              "Knowledge is power"
             </p>
             <div className="flex gap-4">
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><Facebook size={20} /></a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><Twitter size={20} /></a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><Instagram size={20} /></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100075654618001"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                aria-label="Ulwazi High School on Facebook"
+              >
+                <Facebook size={20} />
+              </a>
             </div>
           </div>
 
@@ -56,14 +62,9 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-white/10 pt-8 text-center text-red-100 text-sm">
           <p>© {new Date().getFullYear()} Ulwazi High School. All Rights Reserved.</p>
-          <div className="mt-4 flex justify-center gap-4 text-xs">
-            <span className="px-2 py-1 bg-white/10 rounded">Closed now</span>
-            <span className="px-2 py-1 bg-white/10 rounded">Communities</span>
-            <span className="px-2 py-1 bg-white/10 rounded">Subscriber hub</span>
-          </div>
           <Link to="/admin/login" className="text-red-100/30 hover:text-red-100/60 text-xs mt-4 inline-block transition-colors">Staff Portal</Link>
         </div>
       </div>

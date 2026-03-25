@@ -163,15 +163,15 @@ export const setContact = (info: ContactInfo) => setObject('admin_contact', info
 // About
 const defaultAbout: AboutInfo = {
   historyParagraphs: [
-    'Founded on the principles of excellence and community service, Ulwazi High School has grown from a local initiative into a regional powerhouse of academic achievement. Our school has consistently served as a beacon of hope for thousands of learners.',
-    'Our journey began with a simple mission: to provide world-class education to our youth. Over the decades, we have expanded our facilities, refined our curriculum, and built a legacy that is reflected in our motto: "Quality Education for a Brighter Future."',
-    'Today, Ulwazi High School is recognized as a leader in Grade 12 results, consistently producing top-tier candidates who go on to excel in universities across South Africa and beyond.',
+    'Ulwazi High School is a local school based in the Eastern Cape, Mdantsane, with a clear mission to uplift local children and strengthen their educational support.',
+    'Our community believes that knowledge changes lives. This is why our motto is simple and direct: "Knowledge is power".',
+    'We are committed to developing learners who are confident, disciplined, and prepared to lead in their communities and beyond.',
   ],
   principalName: 'The Principal',
   principalTitle: 'School Principal',
   principalMessage: [
-    'Welcome to Ulwazi High School. As the Principal, it is my honor to lead an institution that is so deeply committed to the success of its learners. Our vision is not just about academic results, but about producing holistic citizens who are ready to change the world.',
-    'We believe in the potential of every student. By providing a disciplined, nurturing, and intellectually stimulating environment, we ensure that our learners can truly achieve their dreams. Our consistent track record is a testament to the hard work of our dedicated staff and the resilience of our students.',
+    'Welcome to Ulwazi High School. As the Principal, it is my honor to lead an institution that is committed to the growth and success of every learner.',
+    'We believe in the potential of every student. By providing a disciplined, supportive, and academically focused environment, we help learners reach their goals and contribute positively to society.',
   ],
 };
 export const getAbout = () => getObject<AboutInfo>('admin_about', defaultAbout);
